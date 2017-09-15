@@ -1,22 +1,17 @@
-{% extends "dashboard/index.html" %} 
-{% load bootstrap4 %} 
-{% block content %}
-
-
+{% extends "dashboard/index.html" %} {% load bootstrap4 %} {% block content %}
 
 <h2>
     <a href="{% url 'jurnal:view' %}" class="btn btn-primary">
         <i class="fa fa-arrow-left"></i>
     </a>
-    Tambah Jurnal
+    Ubah Jurnal
 </h2>
-<hr/>
+<hr>
 
-
-<form class="form-horizontal" method="POST" action="{% url 'jurnal:simpan'%}">
+<form class="form-horizontal" method="POST" action="{% url 'jurnal:update'%}">
     {% csrf_token %} {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">
-        Simpan
+        Update
     </button>
 </form>
 {% endblock content %}

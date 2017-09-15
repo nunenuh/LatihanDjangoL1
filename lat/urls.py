@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^jurnal/', include('jurnal.urls', namespace='jurnal')),
+    url(r'^transaksi/', include('transaksi.urls', namespace='transaksi')),
     url(r'^login/', include('login.urls', namespace='auth')),
 ]
 

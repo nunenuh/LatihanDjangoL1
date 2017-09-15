@@ -1,0 +1,22 @@
+{% extends "dashboard/index.html" %} {% block content %}
+
+<h2>
+    <a href="{% url 'jurnal:view' %}" class="btn btn-sm btn-primary">
+        <i class="fa fa-arrow-left"></i> 
+    </a>
+    Transaksi dari Jurnal : {{jurnal.nama}}
+</h2>
+<hr>
+
+
+<div class="row">
+    <div class="col-sm-4" >
+        {% include 'transaksi/form.html' %}
+    </div>
+    <div class="col-sm-8">
+        {% include 'transaksi/table.html' %}
+    </div>
+
+</div>
+
+{% endblock content %}

@@ -1,32 +1,24 @@
-{% extends "dashboard/index.html" %} {% block content %}
-
-<h2>
-    Jurnal
-    <a href="{% url 'jurnal:tambah' %}" class="btn btn-sm btn-primary">
-        <i class="fa fa-plus"></i> Add
-    </a>
-</h2>
-<hr>
-
-
 
 <table class="table" id="tableku">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Nama Jurnal</th>
-            <th>Keterangan</th>
+            <th>Tanggal</th>
+            <th>Uraian</th>
+            <th>Debet</th>
+            <th>Kredit</th>
             <th>Aksi</th>
         </tr>
     </thead>
     <tbody>
-        {% for jr in list_jurnal %}
+        {% for tr in transaksis %}
         <tr>
-            <td>{{jr.id}}</td>
-            <td>{{jr.nama}}</td>
-            <td>{{jr.keterangan}}</td>
+            <td>{{tr.tanggal}}</td>
+            <td>{{tr.uraian}}</td>
+            <td>{{tr.debt}}</td>
+            <td>{{tr.kredit}}</td>
+            
             <td>
-                <a href="{% url 'jurnal:edit' jr.id %}" class="btn btn-warning">
+                <a href="" class="btn btn-warning">
                     <i class="fa fa-edit"></i>
                 </a>
                 <!-- Button trigger modal -->
@@ -34,12 +26,12 @@
                     <i class="fa fa-trash"></i>
                 </button>
 
-                <a href="{% url 'transaksi:view' jurnal_id=jr.id %}" class="btn btn-primary" alt="Test">
+                <a href="#" class="btn btn-primary" alt="Test">
                     <i class="fa fa-shopping-cart"></i>
                 </a>
 
                 <!-- Modal -->
-                <div class="modal fade" id="myModal{{jr.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="myModal{{tr.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-md" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -51,7 +43,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                <a href="{% url 'jurnal:hapus' nomer=jr.id %}" class="btn btn-danger">
+                                <a href="" class="btn btn-danger">
                                     <i class="fa fa-trash"></i> Hapus
                                 </a>
                             </div>
@@ -63,10 +55,17 @@
         </tr>
         {% endfor %}
     </tbody>
+    <tfoot>
+        <tr>
+            <th>Tanggal</th>
+            <th>Uraian</th>
+            <th>Debet</th>
+            <th>Kredit</th>
+            <th>Aksi</th>
+        </tr>
+    </tfoot>
 </table>
-
 
 <script type="text/javascript">
     $('#tableku').DataTable();
 </script>
-{% endblock content %}

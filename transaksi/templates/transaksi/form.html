@@ -1,0 +1,9 @@
+
+{% load bootstrap4 %}
+
+<form class="form-horizontal" method="POST" action="{% url 'transaksi:simpan' jurnal_id=jurnal.id%}">
+    {% csrf_token %} {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">
+        Simpan
+    </button>
+</form>

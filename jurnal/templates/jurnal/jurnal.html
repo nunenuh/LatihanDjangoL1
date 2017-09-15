@@ -1,0 +1,72 @@
+{% extends "dashboard/index.html" %} {% block content %}
+
+<h2>
+    Jurnal
+    <a href="{% url 'jurnal:tambah' %}" class="btn btn-sm btn-primary">
+        <i class="fa fa-plus"></i> Add
+    </a>
+</h2>
+<hr>
+
+
+
+<table class="table" id="tableku">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Jurnal</th>
+            <th>Keterangan</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for jr in list_jurnal %}
+        <tr>
+            <td>{{jr.id}}</td>
+            <td>{{jr.nama}}</td>
+            <td>{{jr.keterangan}}</td>
+            <td>
+                <a href="{% url 'jurnal:edit' jr.id %}" class="btn btn-warning">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <!-- Button trigger modal -->
+                <button class="btn btn-danger" data-toggle="modal" data-target="#myModal{{jr.id}}">
+                    <i class="fa fa-trash"></i>
+                </button>
+
+                <a href="#" class="btn btn-primary" alt="Test">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal{{jr.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Konfirmasi Penghapusan</h4>
+                            </div>
+                            <div class="modal-body">
+                                Apakah anda yakin ingin menghapus Jurnal dengan nama <b>{{jr.nama}}</b> dan id <b>{{jr.id}}</b>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                                <a href="{% url 'jurnal:hapus' nomer=jr.id %}" class="btn btn-danger">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<script type="text/javascript">
+    $('#tableku').DataTable();
+</script>
+{% endblock content %}

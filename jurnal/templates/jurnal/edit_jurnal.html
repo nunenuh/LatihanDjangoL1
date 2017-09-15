@@ -1,0 +1,17 @@
+{% extends "dashboard/index.html" %} {% load bootstrap4 %} {% block content %}
+
+<h2>
+    <a href="{% url 'jurnal:view' %}" class="btn btn-primary">
+        <i class="fa fa-arrow-left"></i>
+    </a>
+    Ubah Jurnal
+</h2>
+<hr>
+
+<form class="form-horizontal" method="POST" action="{% url 'jurnal:update'%}">
+    {% csrf_token %} {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">
+        Update
+    </button>
+</form>
+{% endblock content %}

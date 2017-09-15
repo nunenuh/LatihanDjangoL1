@@ -2,6 +2,7 @@
 <table class="table" id="tableku">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Tanggal</th>
             <th>Uraian</th>
             <th>Debet</th>
@@ -12,23 +13,20 @@
     <tbody>
         {% for tr in transaksis %}
         <tr>
+            <td>{{tr.id}}</td>
             <td>{{tr.tanggal}}</td>
             <td>{{tr.uraian}}</td>
             <td>{{tr.debt}}</td>
             <td>{{tr.kredit}}</td>
             
             <td>
-                <a href="" class="btn btn-warning">
+                <a href="{% url 'transaksi:edit' jurnal_id=jurnal.id transaksi_id=tr.id %}" class="btn btn-warning">
                     <i class="fa fa-edit"></i>
                 </a>
                 <!-- Button trigger modal -->
-                <button class="btn btn-danger" data-toggle="modal" data-target="#myModal{{jr.id}}">
+                <button class="btn btn-danger" data-toggle="modal" data-target="#myModal{{tr.id}}">
                     <i class="fa fa-trash"></i>
                 </button>
-
-                <a href="#" class="btn btn-primary" alt="Test">
-                    <i class="fa fa-shopping-cart"></i>
-                </a>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal{{tr.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -43,7 +41,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                                <a href="" class="btn btn-danger">
+                                <a href="{% url 'transaksi:hapus' jurnal_id=jurnal.id transaksi_id=tr.id %}" class="btn btn-danger">
                                     <i class="fa fa-trash"></i> Hapus
                                 </a>
                             </div>

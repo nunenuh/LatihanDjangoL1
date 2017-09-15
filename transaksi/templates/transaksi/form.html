@@ -1,9 +1,18 @@
 
 {% load bootstrap4 %}
 
-<form class="form-horizontal" method="POST" action="{% url 'transaksi:simpan' jurnal_id=jurnal.id%}">
+{% if form_mode == 'add' %}
+  <form class="form-horizontal" method="POST" action="{% url 'transaksi:simpan' jurnal_id=jurnal.id%}">
     {% csrf_token %} {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">
         Simpan
     </button>
 </form>
+{% elif form_mode == 'edit' %}
+    <form class="form-horizontal" method="POST" action="{% url 'transaksi:update' jurnal_id=jurnal.id%}">
+    {% csrf_token %} {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">
+        Update
+    </button>
+</form>
+{% endif %}
